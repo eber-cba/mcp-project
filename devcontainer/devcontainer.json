@@ -1,8 +1,9 @@
 {
-  "name": "MCP & Services",
-  "build": { "dockerfile": "Dockerfile" },
-  "runServices": ["mcp-dev", "postgres", "slack-cli"],
+  "name": "MCP Filesystem DevEnv",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "mcp-dev",
   "workspaceFolder": "/workspace",
-  "postCreateCommand": "bash setup_mcp.sh && bash init_db.sh && bash install_slack.sh",
-  "forwardPorts": [25565, 5432]
+  "runServices": ["mcp-dev", "filesystem"],
+  "forwardPorts": [8080],
+  "postCreateCommand": "echo 'Contenedor listo'"
 }

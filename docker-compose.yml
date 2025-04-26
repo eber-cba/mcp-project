@@ -1,0 +1,18 @@
+services:
+  mcp-dev: # Servicio principal que ejecuta Filesystem MCP
+    build:
+      context: . # Construye usando tu Dockerfile en .devcontainer
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ./:/workspace # Monta tu repo en /workspace dentro del contenedor
+    ports:
+      - "8080:8080" # Expone el puerto 8080 para el servidor MCP
+
+  filesystem: # Servicio extra que arranca MCP vía NPX
+    image: node:16-bullseye # Imagen oficial de Node.js 16
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    command: bash setup_filesystem_mcp.sh
+    ports:
+      - "8080:8080" # Asegúrate de que coincide con el mcp-dev
