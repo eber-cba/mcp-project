@@ -1,0 +1,8 @@
+{
+  "name": "MCP & Services",
+  "build": { "dockerfile": "Dockerfile" },
+  "runServices": ["mcp-dev", "postgres", "slack-cli"],
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "bash setup_mcp.sh && bash init_db.sh && bash install_slack.sh",
+  "forwardPorts": [25565, 5432]
+}
